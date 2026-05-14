@@ -7,7 +7,6 @@ import { Featured } from "@/components/site/Featured";
 import { About } from "@/components/site/About";
 import { Visit } from "@/components/site/Visit";
 import { Testimonials } from "@/components/site/Testimonials";
-import { CTA } from "@/components/site/CTA";
 import { Footer } from "@/components/site/Footer";
 
 export const Route = createFileRoute("/")({
