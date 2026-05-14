@@ -1,30 +1,34 @@
 import idol from "@/assets/p-idol.jpg";
 import flowers from "@/assets/p-flowers.jpg";
-import corp from "@/assets/p-corporate.jpg";
 import temple from "@/assets/p-temple.jpg";
 import wall from "@/assets/p-wall.jpg";
-import painting from "@/assets/p-painting.jpg";
 import figurine from "@/assets/p-figurine.jpg";
-import crystal from "@/assets/p-crystal.jpg";
 import clock from "@/assets/p-clock.jpg";
 import candle from "@/assets/p-candle.jpg";
 import { SectionLabel } from "./SectionLabel";
 import { motion } from "framer-motion";
+import { useState } from "react";
+
+const c1 = "https://res.cloudinary.com/dqkbvljmo/image/upload/v1778738164/crystal_1_onop1d.jpg";
+const c2 = "https://res.cloudinary.com/dqkbvljmo/image/upload/v1778738112/crystal_4_zmgw4c.jpg";
+const c3 = "https://res.cloudinary.com/dqkbvljmo/image/upload/v1778738112/crystal_2_uzh4hb.jpg";
+const c4 = "https://res.cloudinary.com/dqkbvljmo/image/upload/v1778738344/Screenshot_2026-05-14_112848_jhwghv.png";
 
 const row1 = [
   { img: idol, label: "Brass Ganesha" },
+  { img: c1, label: "Crystal Sculpture" },
   { img: flowers, label: "Floral Arrangements" },
-  { img: crystal, label: "Crystal Decor" },
+  { img: c2, label: "Heritage Crystal" },
   { img: temple, label: "Wooden Temple" },
   { img: clock, label: "Heritage Clock" },
 ];
 
 const row2 = [
   { img: wall, label: "Gold Wall Art" },
+  { img: c3, label: "Crystal Decor" },
   { img: candle, label: "Candle Holders" },
+  { img: c4, label: "Signature Piece" },
   { img: figurine, label: "Porcelain Muse" },
-  { img: painting, label: "Royal Painting" },
-  { img: corp, label: "Gifting Hamper" },
 ];
 
 function Card({ img, label }: { img: string; label: string }) {
@@ -32,7 +36,6 @@ function Card({ img, label }: { img: string; label: string }) {
     <div className="group relative shrink-0 w-[280px] lg:w-[340px] aspect-[4/5] mx-3 rounded-2xl overflow-hidden shadow-soft hover:scale-[1.03] transition-transform duration-700">
       <img src={img} alt={label} loading="lazy" className="h-full w-full object-cover" />
       <div className="absolute inset-0 bg-gradient-to-t from-forest-deep/80 via-transparent to-transparent" />
-      <div className="absolute inset-0 bg-gradient-to-br from-ivory/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
       <div className="absolute bottom-5 left-5 right-5">
         <p className="text-[10px] tracking-[0.3em] uppercase text-gold">Crystal Fantasy</p>
         <p className="font-serif text-ivory text-xl mt-1">{label}</p>
@@ -41,11 +44,14 @@ function Card({ img, label }: { img: string; label: string }) {
   );
 }
 
-function Row({ items, reverse }: { items: typeof row1; reverse?: boolean }) {
+function Row({ items, reverse, paused }: { items: typeof row1; reverse?: boolean; paused: boolean }) {
   const doubled = [...items, ...items, ...items, ...items];
   return (
     <div className="overflow-hidden py-2">
-      <div className={`flex w-max ${reverse ? "animate-marquee-rev" : "animate-marquee"}`}>
+      <div
+        className={`flex w-max ${reverse ? "animate-marquee-rev" : "animate-marquee"}`}
+        style={{ animationPlayState: paused ? "paused" : "running" }}
+      >
         {doubled.map((it, i) => (
           <Card key={i} img={it.img} label={it.label} />
         ))}
@@ -55,8 +61,13 @@ function Row({ items, reverse }: { items: typeof row1; reverse?: boolean }) {
 }
 
 export function Marquee() {
+  const [paused, setPaused] = useState(false);
   return (
-    <section className="relative py-28 lg:py-36 bg-gradient-forest overflow-hidden">
+    <section
+      className="relative py-28 lg:py-36 bg-gradient-forest overflow-hidden"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+    >
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,oklch(0.74_0.10_80/0.15),transparent_60%)]" />
       <motion.div
         initial={{ opacity: 0, y: 30 }}
@@ -72,11 +83,10 @@ export function Marquee() {
       </motion.div>
 
       <div className="relative space-y-6">
-        <Row items={row1} />
-        <Row items={row2} reverse />
+        <Row items={row1} paused={paused} />
+        <Row items={row2} reverse paused={paused} />
       </div>
 
-      {/* Edge fades */}
       <div className="pointer-events-none absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-forest-deep to-transparent" />
       <div className="pointer-events-none absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-forest-deep to-transparent" />
     </section>
