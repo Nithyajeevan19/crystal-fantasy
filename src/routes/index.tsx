@@ -1,26 +1,47 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Navbar } from "@/components/site/Navbar";
+import { Hero } from "@/components/site/Hero";
+import { Specialities } from "@/components/site/Specialities";
+import { Marquee } from "@/components/site/Marquee";
+import { Featured } from "@/components/site/Featured";
+import { About } from "@/components/site/About";
+import { Visit } from "@/components/site/Visit";
+import { Testimonials } from "@/components/site/Testimonials";
+import { CTA } from "@/components/site/CTA";
+import { Footer } from "@/components/site/Footer";
 
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "Crystal Fantasy — Luxury Gifts & Decor in Abids, Hyderabad" },
+      {
+        name: "description",
+        content:
+          "Crystal Fantasy in Abids, Hyderabad — handcrafted idols, artificial flowers, wooden temples, paintings, corporate gifts and timeless home decor.",
+      },
+      { property: "og:title", content: "Crystal Fantasy — Luxury Gifts & Decor, Hyderabad" },
+      {
+        property: "og:description",
+        content: "Hyderabad's home of elegant gifting and timeless decor on Tilak Road, Abids.",
+      },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. For sites with multiple pages (About, Services, Contact, etc.),
-// create separate route files (about.tsx, services.tsx, contact.tsx) — don't put all pages in this file.
-function PlaceholderIndex() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
-}
-
 function Index() {
-  return <PlaceholderIndex />;
+  return (
+    <main className="bg-ivory">
+      <Navbar />
+      <Hero />
+      <Specialities />
+      <Marquee />
+      <Featured />
+      <About />
+      <Visit />
+      <Testimonials />
+      <CTA />
+      <Footer />
+    </main>
+  );
 }
