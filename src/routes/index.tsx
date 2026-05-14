@@ -37,9 +37,8 @@ function Index() {
       <Marquee />
       <Featured />
       <About />
-      <Visit />
       <Testimonials />
-      <CTA />
+      <Visit />
       <Footer />
     </main>
   );
