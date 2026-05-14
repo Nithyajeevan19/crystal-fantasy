@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowLeft, ArrowUpRight } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
 import { UnderlineTabs } from "@/components/site/UnderlineTabs";
@@ -79,11 +79,6 @@ function CollectionPage() {
                     <div className="absolute inset-0 bg-gradient-to-t from-forest-deep/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                     <div className="absolute top-4 left-4 px-3 py-1.5 rounded-full glass text-forest-deep text-xs font-semibold tracking-wider">
                       {p.price}
-                    </div>
-                    <div className="absolute inset-x-4 bottom-4 translate-y-6 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
-                      <button className="w-full inline-flex items-center justify-center gap-2 glass-dark text-ivory py-3 rounded-full text-[11px] tracking-[0.25em] uppercase font-semibold">
-                        View Details <ArrowUpRight className="w-3.5 h-3.5" />
-                      </button>
                     </div>
                   </div>
                   <div className="px-6 py-5 flex items-center justify-between">

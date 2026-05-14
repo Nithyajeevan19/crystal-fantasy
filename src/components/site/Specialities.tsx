@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowUpRight, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { SectionLabel } from "./SectionLabel";
 import { UnderlineTabs } from "./UnderlineTabs";
 import { productData, productCategories } from "@/lib/products";
@@ -49,40 +49,38 @@ export function Specialities() {
             className="mt-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           >
             {visible.map((p, i) => (
-              <motion.article
+              <motion.div
                 key={p.name + i}
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: i * 0.08 }}
-                className="group relative overflow-hidden rounded-3xl bg-card shadow-soft hover:shadow-luxe transition-all duration-700"
               >
-                <div className="relative aspect-[4/5] overflow-hidden">
-                  <img
-                    src={p.image}
-                    alt={p.name}
-                    loading="lazy"
-                    className="h-full w-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-forest-deep/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <Link
+                  to="/collection"
+                  className="group relative overflow-hidden rounded-3xl bg-card shadow-soft hover:shadow-luxe transition-all duration-700 block cursor-pointer"
+                >
+                  <div className="relative aspect-[4/5] overflow-hidden">
+                    <img
+                      src={p.image}
+                      alt={p.name}
+                      loading="lazy"
+                      className="h-full w-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-forest-deep/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                  <div className="absolute top-4 left-4 px-3 py-1.5 rounded-full glass text-forest-deep text-xs font-semibold tracking-wider">
-                    {p.price}
+                    <div className="absolute top-4 left-4 px-3 py-1.5 rounded-full glass text-forest-deep text-xs font-semibold tracking-wider">
+                      {p.price}
+                    </div>
                   </div>
-
-                  <div className="absolute inset-x-4 bottom-4 translate-y-6 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
-                    <button className="w-full inline-flex items-center justify-center gap-2 glass-dark text-ivory py-3 rounded-full text-[11px] tracking-[0.25em] uppercase font-semibold">
-                      View Details <ArrowUpRight className="w-3.5 h-3.5" />
-                    </button>
+                  <div className="px-6 py-5 flex items-center justify-between">
+                    <div>
+                      <p className="text-[10px] tracking-[0.3em] uppercase text-muted-foreground">{active}</p>
+                      <h3 className="font-serif text-xl text-forest-deep mt-1">{p.name}</h3>
+                    </div>
+                    <span className="font-serif text-gold text-lg italic">{p.price}</span>
                   </div>
-                </div>
-                <div className="px-6 py-5 flex items-center justify-between">
-                  <div>
-                    <p className="text-[10px] tracking-[0.3em] uppercase text-muted-foreground">{active}</p>
-                    <h3 className="font-serif text-xl text-forest-deep mt-1">{p.name}</h3>
-                  </div>
-                  <span className="font-serif text-gold text-lg italic">{p.price}</span>
-                </div>
-              </motion.article>
+                </Link>
+              </motion.div>
             ))}
           </motion.div>
         </AnimatePresence>

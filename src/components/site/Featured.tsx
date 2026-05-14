@@ -7,7 +7,6 @@ import painting from "@/assets/p-painting.jpg";
 import corp from "@/assets/p-corporate.jpg";
 import wall from "@/assets/p-wall.jpg";
 import candle from "@/assets/p-candle.jpg";
-import crystal from "@/assets/p-crystal.jpg";
 
 const items = [
   { title: "Divine Collection", subtitle: "Idols & Sacred Art", img: idol, span: "lg:col-span-2 lg:row-span-2" },
@@ -15,7 +14,6 @@ const items = [
   { title: "Corporate Gifting", subtitle: "Curated Hampers", img: corp, span: "lg:col-span-2" },
   { title: "Modern Home Decor", subtitle: "Wall & Accent Pieces", img: wall, span: "lg:col-span-2" },
   { title: "Festive Decor", subtitle: "Diyas & Candles", img: candle, span: "lg:col-span-2" },
-  { title: "Crystal Collection", subtitle: "Refined Sculptures", img: crystal, span: "lg:col-span-2" },
 ];
 
 export function Featured() {

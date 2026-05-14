@@ -1,4 +1,5 @@
 import { Phone, Mail, MapPin } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 
 const Instagram = (p: React.SVGProps<SVGSVGElement>) => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" {...p}>
@@ -18,9 +19,11 @@ export function Footer() {
     <footer id="contact" className="bg-ivory border-t border-border">
       <div className="mx-auto max-w-7xl px-6 lg:px-10 py-20 grid lg:grid-cols-4 gap-12">
         <div className="lg:col-span-2">
-          <h3 className="font-serif text-3xl text-forest-deep">
-            Crystal <span className="italic text-gold">Fantasy</span>
-          </h3>
+          <Link to="/" className="inline-block">
+            <h3 className="font-serif text-3xl text-forest-deep hover:opacity-80 transition-opacity">
+              Crystal <span className="italic text-gold">Fantasy</span>
+            </h3>
+          </Link>
           <p className="mt-4 text-muted-foreground text-sm leading-relaxed max-w-sm">
             Hyderabad's home of elegant gifting, divine idols and timeless
             handcrafted decor — curated since 1998.

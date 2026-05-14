@@ -8,7 +8,6 @@ const links = [
   { label: "Specialities", to: "/#specialities" },
   { label: "Collections", to: "/#collections" },
   { label: "About", to: "/#about" },
-  { label: "Visit Store", to: "/#visit" },
   { label: "Contact", to: "/#contact" },
 ];
 
@@ -42,14 +41,25 @@ export function Navbar() {
         <ul className="hidden lg:flex items-center gap-10">
           {links.map((l) => (
             <li key={l.label}>
-              <a
-                href={l.to}
-                className={`hover-underline text-sm tracking-[0.18em] uppercase font-medium ${
-                  scrolled ? "text-forest" : "text-ivory/90"
-                }`}
-              >
-                {l.label}
-              </a>
+              {l.to === "/" ? (
+                <Link
+                  to="/"
+                  className={`hover-underline text-sm tracking-[0.18em] uppercase font-medium ${
+                    scrolled ? "text-forest" : "text-ivory/90"
+                  }`}
+                >
+                  {l.label}
+                </Link>
+              ) : (
+                <a
+                  href={l.to}
+                  className={`hover-underline text-sm tracking-[0.18em] uppercase font-medium ${
+                    scrolled ? "text-forest" : "text-ivory/90"
+                  }`}
+                >
+                  {l.label}
+                </a>
+              )}
             </li>
           ))}
         </ul>
@@ -83,13 +93,23 @@ export function Navbar() {
           <ul className="flex flex-col gap-4">
             {links.map((l) => (
               <li key={l.label}>
-                <a
-                  href={l.to}
-                  onClick={() => setOpen(false)}
-                  className="block text-forest text-sm tracking-[0.18em] uppercase"
-                >
-                  {l.label}
-                </a>
+                {l.to === "/" ? (
+                  <Link
+                    to="/"
+                    onClick={() => setOpen(false)}
+                    className="block text-forest text-sm tracking-[0.18em] uppercase"
+                  >
+                    {l.label}
+                  </Link>
+                ) : (
+                  <a
+                    href={l.to}
+                    onClick={() => setOpen(false)}
+                    className="block text-forest text-sm tracking-[0.18em] uppercase"
+                  >
+                    {l.label}
+                  </a>
+                )}
               </li>
             ))}
           </ul>
